@@ -18,4 +18,8 @@ function* getShelfItems( action ) {
   }
 }
 
-export default getShelfItems;
+function* getShelfItemsWatcher() {
+  yield takeLatest('GET_ITEMS', getShelfItems);
+}
+
+export default getShelfItemsWatcher;
