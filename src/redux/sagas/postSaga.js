@@ -22,4 +22,4 @@ function* postSagaWatcher() {
   yield takeLatest('POST_ITEMS', postSaga);
 }
 
-export default postSagaWatcher;
+export default (postSagaWatcher);

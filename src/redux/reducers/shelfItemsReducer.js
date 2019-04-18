@@ -1,5 +1,3 @@
-import getShelfItems from '../sagas/getShelfItems';
-
 const shelfItems = (state = [], action) => {
   switch (action.type) {
     case `SET_ITEMS`:

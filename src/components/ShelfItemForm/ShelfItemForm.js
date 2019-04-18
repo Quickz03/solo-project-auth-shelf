@@ -11,7 +11,7 @@ class ShelfItemForm extends Component {
   };
 
   handleChange = propertName => event => {
-    this.setStatw({
+    this.setState({
       newItem: {
         ...this.state.newItem,
         [propertName]: event.target.value,
@@ -21,7 +21,7 @@ class ShelfItemForm extends Component {
 
   addNewItem = event => {
     event.preventDefault();
-    this.props.disptach({type: 'POST_ITEMS', payload: this.state.newItem })
+    this.props.dispatch({type: 'POST_ITEMS', payload: this.state.newItem })
   }
 
   render() {
@@ -44,4 +44,4 @@ const mapStateToProps = state => ({
   errors: state.errors,
 });
 
-export default connect(mapStateToProps)(RegisterPage);
+export default connect(mapStateToProps)(ShelfItemForm);
