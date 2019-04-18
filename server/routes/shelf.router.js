@@ -5,9 +5,18 @@ const router = express.Router();
 /**
  * Get all of the items on the shelf
  */
-router.get('/', (req, res) => {
-    res.sendStatus(200); // For testing only, can be removed
-});
+    router.get('/', (req, res) => {
+        // return all categories
+        const queryText = `SELECT * FROM "item"`;
+        pool.query(queryText)
+            .then((result) => {
+                res.send(result.rows);
+            })
+            .catch((error) => {
+                console.log(`Error on query ${error}`);
+                res.sendStatus(500);
+            });
+    });
 
 
 /**
@@ -22,7 +31,16 @@ router.post('/', (req, res) => {
  * Delete an item if it's something the logged in user added
  */
 router.delete('/:id', (req, res) => {
-
+    console.log(req.params.id);
+    const queryText = 'DELETE FROM item WHERE id=$1';
+    pool.query(queryText, [req.params.id])
+        .then(() => {
+            res.sendStatus(200);
+        })
+        .catch((err) => {
+            console.log('Error completing SELECT item query', err);
+            res.sendStatus(500);
+        });
 });
 
 
