@@ -1,15 +1,38 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
-const Items = (props) => {
-  return (
-    <div>
-      <img src={props.item.image_url} alt={props.item.description} />
-      <div>
-        <p> {props.item.image_url}</p>
-        <p> Name: { props.item.description }</p>
-      </div>
-    </div>
-  )
+
+
+
+
+class Items extends Component {
+
+
+    removeItem = () => {
+        console.log(this.props.item.id);
+        this.props.dispatch({
+            type: 'DELETE_ITEMS',
+            payload: this.props.item.id
+        })
+    }
+
+render() {
+        return (
+            <div>
+            <img src={this.props.item.image_url} alt={this.props.item.description} />
+            <div>
+                <p> {this.props.item.image_url}</p>
+                <p> Name: { this.props.item.description }</p>
+            <button onClick={this.removeItem}>Remove</button>
+            </div>
+            </div>
+        )
+    }
 }
 
-export default Items;
+const mapStateToProps = reduxState => ({
+    reduxState,
+
+});
+
+export default connect(mapStateToProps)(Items);
