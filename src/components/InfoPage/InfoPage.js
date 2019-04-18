@@ -9,6 +9,7 @@ const InfoPage = () => (
   <div>
     <p>
       Info Page
+      <ListItems />
     </p>
   </div>
 );
