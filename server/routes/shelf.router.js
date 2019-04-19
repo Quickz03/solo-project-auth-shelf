@@ -26,8 +26,13 @@ router.post('/', (req, res) => {
 // req.body should be a project object
     const newItem = req.body;
 // database query should mask VALUES
+<<<<<<< HEAD
     const queryText = `INSERT INTO "item" 
                         ("description","image_url",)VALUES ($1, $2);`;
+=======
+    const queryText = `INSERT INTO "item" ("description","image_url")
+    VALUES ($1, $2);`;
+>>>>>>> 833ca9690c0158cafe57249c8d3348b4a1b8148b
     const queryValues = [
         newItem.description,
         newItem.url,
