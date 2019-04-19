@@ -27,7 +27,7 @@ router.post('/', (req, res) => {
     const newItem = req.body;
 // database query should mask VALUES
     const queryText = `INSERT INTO "item" 
-    ("description","image_url",)VALUES ($1, $2);`;
+                        ("description","image_url",)VALUES ($1, $2);`;
     const queryValues = [
         newItem.description,
         newItem.url,
@@ -63,7 +63,7 @@ pool.query(queryText, [req.params.id])
 * Update an item if it's something the logged in user added
 */
 router.put('/:id', (req, res) => {
-
+    
 });
 
 
@@ -72,7 +72,15 @@ router.put('/:id', (req, res) => {
 * they have added to the shelf
 */
 router.get('/count', (req, res) => {
-
+    console.log('in count Get');
+    pool.query(`SELECT  "user"."username", count ("item"."user_id") FROM "user"
+    LEFT JOIN "item" ON "user"."id"="item"."user_id"
+    GROUP BY "user"."username";`)
+    .then((result) => {res.send(result.rows); })
+    .catch((error) => {
+        console.log('error on count Get', error);
+        res.sendStatus(500)
+    })
 });
 
 
