@@ -19,6 +19,7 @@ import InfoPage from '../InfoPage/InfoPage';
 
 import './App.css';
 import ShelfItemForm from '../ShelfItemForm/ShelfItemForm';
+import UserList from '../UserList/UserList';
 
 class App extends Component {
   componentDidMount () {
@@ -60,6 +61,13 @@ class App extends Component {
               exact
               path="/form"
               component={ShelfItemForm}
+            />
+            < ProtectedRoute
+            exact
+            path = "/count"
+            component = {
+              UserList
+            }
             />
             {/* If none of the other routes matched, we will show a 404. */}
             <Route render={() => <h1>404</h1>} />
